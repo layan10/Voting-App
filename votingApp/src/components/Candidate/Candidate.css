@@ -1,4 +1,4 @@
-.canadidate{
+.candidate{
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -11,17 +11,17 @@
     color: black;
 }
 
-.canadidate img{
+.candidate img{
     width: 20rem;
     height: 20rem;
     border-radius: 0.5rem;
 }
 
-.canadidate-name{
+.candidate-name{
     margin: 0.5em;
 }
 
-.canadidate button{
+.candidate button{
     padding: 0.5em 1em;
     margin: 0.5em;
     border: none;

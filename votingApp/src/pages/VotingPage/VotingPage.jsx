@@ -1,9 +1,8 @@
-import Canadidate from "../../components/Canadidate/Canadidate";
+import Candidate from "../../components/Candidate/Candidate";
 import "./VotingPage.css";
 
 const VotingPage = () => {
   
-
   return (
     <div className="voting-page">
       <nav>
@@ -13,11 +12,11 @@ const VotingPage = () => {
         </ul>
       </nav>
       <h1>Voting Page</h1>
-      <div className="canadites">
-        <Canadidate />
-        <Canadidate />
-        <Canadidate />
-        <Canadidate />
+      <div className="candites">
+        <Candidate />
+        <Candidate />
+        <Candidate />
+        <Candidate />
       </div>
     </div>
   );
