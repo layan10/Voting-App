@@ -16,6 +16,7 @@ const Canadidate = () =>
             setbtnTitle('Vote');
         }
     } 
+    
     return (
         <div className='canadidate'>
             <img src={dog} alt="dog" />
