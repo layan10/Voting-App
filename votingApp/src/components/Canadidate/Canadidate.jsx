@@ -8,11 +8,11 @@ const Canadidate = () =>
     const [btnTitle, setbtnTitle] = useState('Vote');
     const handlevote = () =>{
         if(btnTitle === 'Vote'){
-            setVotes(1);
+            setVotes(votes + 1);
             setbtnTitle('Change My Vote !');
         }
         else{
-            setVotes(0);
+            setVotes(votes - 1);
             setbtnTitle('Vote');
         }
     } 

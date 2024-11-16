@@ -1,11 +1,10 @@
 import './App.css'
-import Canadidate from './components/Canadidate/Canadidate'
-
+import VotingPage from './pages/VotingPage/VotingPage'
 function App() {
 
   return (
     <>
-      <Canadidate />
+      <VotingPage />
     </>
   )
 }
