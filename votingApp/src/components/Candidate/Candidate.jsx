@@ -1,24 +1,7 @@
 import './Candidate.css';
 import dog from '../../assets/dog.jpg';
 import { useState } from 'react';
-import PropTypes from 'prop-types';
-
-const ChangeMyVote = ({ onConfirm, onCancel }) => {
-    return (
-        <div className="change-my-vote">
-            <button className="confirm-btn" onClick={onConfirm}>
-                I&apos;m Sure
-            </button>
-            <button className="cancel-btn" onClick={onCancel}>
-                Cancel
-            </button>
-        </div>
-)};
-
-ChangeMyVote.propTypes = {
-    onConfirm: PropTypes.func.isRequired,
-    onCancel: PropTypes.func.isRequired,
-};
+import ChangeMyVote from '../ChangeMyVote/ChangeMyVote';
 
 const Candidate = () => {
     const [votes, setVotes] = useState(0);
@@ -53,10 +36,7 @@ const Candidate = () => {
                     {btnTitle}
                 </button>
             ) : (
-                <ChangeMyVote
-                    onConfirm={handleConfirmChange}
-                    onCancel={handleCancelChange}
-                />
+                <ChangeMyVote onConfirm={handleConfirmChange} onCancel={handleCancelChange}/>
             )}
             <p>
                 Votes: <span>{votes}</span>
