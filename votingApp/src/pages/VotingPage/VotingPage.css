@@ -1,0 +1,32 @@
+.voting-page{
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.1rem solid red ;
+    list-style: none;
+    padding: 0;
+    align-items: center;
+    margin-top: 0;
+}
+
+nav h1{
+    margin: 1rem;
+}
+
+.logo{
+    height: 3rem;
+    width: 3rem;
+    padding: 0;
+    margin-bottom: 0.5rem;
+}
+
+.candidates{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}

@@ -1,12 +1,13 @@
 import './App.css'
-import Canadidate from './components/Canadidate/Canadidate'
-
+import VotingPage from './pages/VotingPage/VotingPage'
+import { CandidatesProvider } from './context/CandidatesContext';
+import logo from './assets/logo.jpg'
 function App() {
 
   return (
-    <>
-      <Canadidate />
-    </>
+    <CandidatesProvider>
+      <VotingPage logo = {logo} />
+    </CandidatesProvider>
   )
 }
 
