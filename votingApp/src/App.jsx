@@ -1,11 +1,13 @@
 import './App.css'
 import VotingPage from './pages/VotingPage/VotingPage'
+import { CandidatesProvider } from './context/CandidatesContext';
+import logo from './assets/logo.jpg'
 function App() {
 
   return (
-    <>
-      <VotingPage />
-    </>
+    <CandidatesProvider>
+      <VotingPage logo = {logo} />
+    </CandidatesProvider>
   )
 }
 

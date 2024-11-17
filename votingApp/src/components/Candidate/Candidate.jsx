@@ -1,10 +1,10 @@
 import './Candidate.css';
-import dog from '../../assets/dog.jpg';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import ChangeMyVote from '../ChangeMyVote/ChangeMyVote';
 
-const Candidate = () => {
-    const [votes, setVotes] = useState(0);
+const Candidate = ({ candidate }) => {
+    const [votes, setVotes] = useState(candidate.votes);
     const [btnTitle, setBtnTitle] = useState('Vote');
     const [showChangeVoteOptions, setShowChangeVoteOptions] = useState(false);
 
@@ -29,20 +29,28 @@ const Candidate = () => {
 
     return (
         <div className="candidate">
-            <img src={dog} alt="dog" />
-            <h3 className="candidate-name">Kinder</h3>
+            <img src={candidate.image} alt={candidate.name} />
+            <h3 className="candidate-name">{candidate.name}</h3>
             {!showChangeVoteOptions ? (
                 <button onClick={btnTitle === 'Vote' ? handleVote : handleChangeVoteClick}>
                     {btnTitle}
                 </button>
             ) : (
-                <ChangeMyVote onConfirm={handleConfirmChange} onCancel={handleCancelChange}/>
+                <ChangeMyVote onConfirm={handleConfirmChange} onCancel={handleCancelChange} />
             )}
             <p>
                 Votes: <span>{votes}</span>
             </p>
         </div>
     );
+};
+
+Candidate.propTypes = {
+    candidate: PropTypes.shape({
+        votes: PropTypes.number.isRequired,
+        image: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+    }).isRequired,
 };
 
 export default Candidate;
