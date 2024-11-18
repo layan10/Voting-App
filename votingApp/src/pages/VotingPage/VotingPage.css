@@ -1,27 +1,31 @@
 .voting-page{
     display: flex;
     flex-direction: column;
+    color: black;
 }
 
 .navbar{
     display: flex;
     justify-content: space-between;
-    border-bottom: 0.1rem solid red ;
     list-style: none;
-    padding: 0;
+    padding: 0.2rem;
     align-items: center;
     margin-top: 0;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 .navbar h1{
-    margin: 1rem;
+    margin-top: 1rem;
 }
 
 .logo{
-    height: 3.5rem;
-    width: 3.5rem;
+    height: 4rem;
+    width: 4rem;
     padding: 0;
     margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
 }
 
 .candidates{
@@ -29,6 +33,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
+    margin-top: 3rem;
 }
 
 .user{
@@ -39,11 +44,15 @@
 .logout-button{
     padding: 0.5em 1em;
     border-radius: 0.5rem;
-    border: 0.1rem solid white ;
+    border: 0.1rem solid #d10f23 ;
     margin-bottom: 0.5rem;
     cursor: pointer;
+    background-color: #D9DADE;
+    color: black;
 }
 
 .logout-button:hover{
-    border: 0.1rem solid red ;
+    box-shadow: 0 0 1em #00000022;
+    border: 0.1rem solid #d10f23 ;
+
 }

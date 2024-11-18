@@ -28,13 +28,13 @@ const LoginForm = ({logo , users}) => {
             </div>
             <div className="form-input">
                 <label htmlFor="email" className="form-label">Email</label>
-                <input id="email" type="email" name="email" value={email} 
+                <input id="email" type="email" name="email" value="" 
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
             <div className="form-input">
                 <label htmlFor="password" className="form-label">Password</label>
-                <input id="password" type="password" name="password" value={password}
+                <input id="password" type="password" name="password" value=""
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>

@@ -5,10 +5,11 @@
     align-items: center;
     padding: 0.5em;
     margin: 0.5em;
-    box-shadow: 0 0 1em #00000022;
-    background-color: azure;
+    box-shadow: 0 0 0.2em #d10f23;
+    background-color: #D9DADE;
     border-radius: 0.5rem;
     color: black;
+    border: 0.1rem solid #d10f23;
 }
 
 .candidate img{
@@ -25,8 +26,12 @@
     padding: 0.5em 1em;
     margin: 0.5em;
     border-radius: 0.5rem;
-    border: 0.1rem solid red ;
+    border: 0.1rem solid #d10f23 ;
     color: black;
     cursor: pointer;
-    background-color: white;
+    background-color: #D9DADE;
+}
+
+.candidate button:hover{
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
 }
