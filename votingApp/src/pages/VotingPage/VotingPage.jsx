@@ -43,7 +43,7 @@ const VotingPage = ({ logo }) => {
              <button className="logout-button" onClick={handleLogout}>Logout</button>
           </div>
       </nav>
-      <h1>Vote The Cutest Pet :)</h1>
+      <h1>Vote For The Cutest Pet :)</h1>
       <div className="candidates">
         {candidates.map(candidate => (
           <Candidate 
