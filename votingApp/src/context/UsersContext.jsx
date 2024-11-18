@@ -4,35 +4,50 @@ import PropTypes from 'prop-types';
 export const UsersContext = createContext();
 
 export const UsersProvider = ({ children }) => {
+UsersProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch("https://6738935c4eb22e24fca855e1.mockapi.io/api/votingApp/users");
-        if (!response.ok) {
-          throw new Error("Failed to fetch users");
-        }
-        const data = await response.json();
-        setUsers(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-    };
-    
-    UsersProvider.propTypes = {
-      children: PropTypes.node.isRequired,
-    };
-    };
+      fetch("https://6738935c4eb22e24fca855e1.mockapi.io/api/votingApp/users")
+        .then(response => response.json())
+        .then(data => setUsers(data))
+        .catch(error => console.error("Error fetching users:", error));
+    }, []);
 
-    fetchUsers();
-  }, []);
-
+  const updateUser = async (userId, votedFor, voteAdded) => {
+    try {
+      const updatedUser = users.find(user => user.id === userId);
+  
+      const response = await fetch(`https://6738935c4eb22e24fca855e1.mockapi.io/api/votingApp/users/${userId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...updatedUser,
+          voted: voteAdded,
+          votedFor: voteAdded ? votedFor : "",
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to update user votes");
+      }
+  
+      const updatedData = await response.json();
+  
+      setUsers(users.map(user =>
+        user.id === userId ? updatedData : user
+      ));
+    } catch (error) {
+      console.error("Error updating user votes:", error);
+    }
+  };
+  
   return (
-    <UsersContext.Provider value={{ users, loading, error }}>
+    <UsersContext.Provider value={{ users, updateUser }}>
       {children}
     </UsersContext.Provider>
   );

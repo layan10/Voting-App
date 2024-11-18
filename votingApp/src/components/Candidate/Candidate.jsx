@@ -3,15 +3,11 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import ChangeMyVote from '../ChangeMyVote/ChangeMyVote';
 
-const Candidate = ({ candidate, votedCandidateId, onVote, onCancelVote }) => {
-  const [votes, setVotes] = useState(candidate.votes);
-  const [btnTitle, setBtnTitle] = useState('Vote');
+const Candidate = ({ candidate, onVote, onCancelVote, user }) => {
   const [showChangeVoteOptions, setShowChangeVoteOptions] = useState(false);
 
   const handleVote = () => {
-    setVotes(votes + 1);
-    setBtnTitle('Change My Vote');
-    onVote(candidate.id); 
+    onVote(candidate.id);
   };
 
   const handleChangeVoteClick = () => {
@@ -19,36 +15,38 @@ const Candidate = ({ candidate, votedCandidateId, onVote, onCancelVote }) => {
   };
 
   const handleConfirmChange = () => {
-    setVotes(votes - 1);
-    setBtnTitle('Vote');
     setShowChangeVoteOptions(false);
-    onCancelVote(); 
+    onCancelVote(candidate.id);
   };
 
   const handleCancelChange = () => {
     setShowChangeVoteOptions(false);
   };
 
-  const shouldShowVoteButton =
-    votedCandidateId === null || votedCandidateId === candidate.id;
+  const renderButton = () => {
+    if (user.voted && user.votedFor === candidate.id) {
+      return (
+        <button onClick={handleChangeVoteClick}>Change My Vote!</button>
+      );
+    } else if (!user.voted) {
+      return (
+        <button onClick={handleVote}>Vote</button>
+      );
+    }
+    return null;
+  };
 
   return (
     <div className="candidate">
       <img src={candidate.image} alt={candidate.name} />
       <h3 className="candidate-name">{candidate.name}</h3>
       {!showChangeVoteOptions ? (
-        shouldShowVoteButton && (
-          <button
-            onClick={btnTitle === 'Vote' ? handleVote : handleChangeVoteClick}
-          >
-            {btnTitle}
-          </button>
-        )
+        renderButton()
       ) : (
         <ChangeMyVote onConfirm={handleConfirmChange} onCancel={handleCancelChange} />
       )}
       <p>
-        Votes: <span>{votes}</span>
+        Votes: <span>{candidate.votes}</span>
       </p>
     </div>
   );
@@ -57,13 +55,16 @@ const Candidate = ({ candidate, votedCandidateId, onVote, onCancelVote }) => {
 Candidate.propTypes = {
   candidate: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    votes: PropTypes.number.isRequired,
   }).isRequired,
-  votedCandidateId: PropTypes.string,
   onVote: PropTypes.func.isRequired,
   onCancelVote: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    voted: PropTypes.bool.isRequired,
+    votedFor: PropTypes.string,
+  }).isRequired,
 };
 
 export default Candidate;

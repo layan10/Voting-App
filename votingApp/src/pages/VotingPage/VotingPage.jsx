@@ -1,19 +1,24 @@
 import Candidate from "../../components/Candidate/Candidate";
 import { CandidatesContext } from "../../context/CandidatesContext";
-import { useContext, useState } from "react";
+import { useContext} from "react";
+import { UsersContext } from "../../context/UsersContext";
 import "./VotingPage.css";
 import PropTypes from 'prop-types';
 
 const VotingPage = ({ logo }) => {
-  const { candidates } = useContext(CandidatesContext);
-  const [votedCandidateId, setVotedCandidateId] = useState(null);
+  const { candidates, updateVotes } = useContext(CandidatesContext);
+  const {users,updateUser} = useContext(UsersContext);
+  const user = users.find(user => user.email === localStorage.getItem('email'));
 
+  
   const handleVote = (candidateId) => {
-    setVotedCandidateId(candidateId);
+    updateVotes(candidateId, candidates.find(candidate => candidate.id === candidateId).votes + 1, user.id, true);
+    updateUser(user.id, candidateId, true);
   };
 
-  const handleCancelVote = () => {
-    setVotedCandidateId(null);
+  const handleCancelVote = (candidateId) => {
+    updateVotes(candidateId, candidates.find(candidate => candidate.id === candidateId).votes - 1, user.id, false);
+    updateUser(user.id, null, false);
   };
 
   const handleLogout = () => {
@@ -32,15 +37,15 @@ const VotingPage = ({ logo }) => {
              <button className="logout-button" onClick={handleLogout}>Logout</button>
           </div>
       </nav>
-      <h1>Voting Page</h1>
+      <h1>Vote The Cutest Pet :)</h1>
       <div className="candidates">
         {candidates.map(candidate => (
-          <Candidate
+          <Candidate 
             key={candidate.id}
             candidate={candidate}
-            votedCandidateId={votedCandidateId}
             onVote={handleVote}
             onCancelVote={handleCancelVote}
+            user = {user}
           />
         ))}
       </div>
