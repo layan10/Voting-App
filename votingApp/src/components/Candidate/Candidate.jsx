@@ -2,11 +2,13 @@ import './Candidate.css';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import ChangeMyVote from '../ChangeMyVote/ChangeMyVote';
+//import CircularProgress from '@mui/material/CircularProgress';
+
 
 const Candidate = ({ candidate, onVote, onCancelVote, user }) => {
-  while(!user) {
-    console.log("user is not defined yet");
-  }
+  /*while(!user){
+    <CircularProgress />
+  }*/
   const [showChangeVoteOptions, setShowChangeVoteOptions] = useState(false);
 
   const handleVote = () => {
@@ -26,12 +28,15 @@ const Candidate = ({ candidate, onVote, onCancelVote, user }) => {
     setShowChangeVoteOptions(false);
   };
 
+  const votedFor = !user ? localStorage.getItem('votedFor') : user.votedFor;
+  const voted = !user ? localStorage.getItem('voted') : user.voted;
+
   const renderButton = () => {
-    if (user.voted && user.votedFor === candidate.id) {
+    if (voted && votedFor === candidate.id) {
       return (
         <button onClick={handleChangeVoteClick}>Change My Vote!</button>
       );
-    } else if (!user.voted) {
+    } else if (!voted) {
       return (
         <button onClick={handleVote}>Vote</button>
       );

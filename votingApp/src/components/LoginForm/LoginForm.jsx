@@ -16,6 +16,8 @@ const LoginForm = ({logo , users}) => {
             localStorage.setItem('email', email);
             localStorage.setItem('password', password );
             localStorage.setItem('username', user.username);
+            localStorage.setItem('voted', user.voted);
+            localStorage.setItem('votedFor', user.votedFor);
             alert('Login successful');
         } else {
             alert('Invalid email or password');
