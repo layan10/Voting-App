@@ -7,6 +7,7 @@ const LoginForm = ({logo , users}) => {
     const [password, setPassword] = useState('');
 
     const handleLogin = () => {
+
         const user = users.find(
           (user) => user.email === email && user.password === password
         );
@@ -14,6 +15,7 @@ const LoginForm = ({logo , users}) => {
         if (user) {
             localStorage.setItem('email', email);
             localStorage.setItem('password', password );
+            localStorage.setItem('username', user.username);
             alert('Login successful');
         } else {
             alert('Invalid email or password');
@@ -28,13 +30,13 @@ const LoginForm = ({logo , users}) => {
             </div>
             <div className="form-input">
                 <label htmlFor="email" className="form-label">Email</label>
-                <input id="email" type="email" name="email" value="" 
+                <input id="email" type="email" name="email" value={email}  
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
             <div className="form-input">
                 <label htmlFor="password" className="form-label">Password</label>
-                <input id="password" type="password" name="password" value=""
+                <input id="password" type="password" name="password" value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>

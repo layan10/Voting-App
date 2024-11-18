@@ -15,6 +15,10 @@ function App() {
   if(!password){
     localStorage.setItem('password', '');
   }
+  const username = localStorage.getItem('username');
+  if(!username){
+    localStorage.setItem('username', '');
+  }
   
   return (
     <>
