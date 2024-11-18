@@ -56,12 +56,12 @@ const Candidate = ({ candidate, votedCandidateId, onVote, onCancelVote }) => {
 
 Candidate.propTypes = {
   candidate: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     votes: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
-  votedCandidateId: PropTypes.number,
+  votedCandidateId: PropTypes.string,
   onVote: PropTypes.func.isRequired,
   onCancelVote: PropTypes.func.isRequired,
 };
