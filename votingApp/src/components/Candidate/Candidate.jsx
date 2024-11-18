@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import ChangeMyVote from '../ChangeMyVote/ChangeMyVote';
 
 const Candidate = ({ candidate, onVote, onCancelVote, user }) => {
+  while(!user) {
+    console.log("user is not defined yet");
+  }
   const [showChangeVoteOptions, setShowChangeVoteOptions] = useState(false);
 
   const handleVote = () => {
