@@ -16,13 +16,21 @@ const VotingPage = ({ logo }) => {
     setVotedCandidateId(null);
   };
 
+  const handleLogout = () => {
+    localStorage.setItem('email', '');
+    localStorage.setItem('password', '');
+    alert('Logout successful !'); 
+    window.location.reload();
+  }
+
   return (
     <div className="voting-page">
-      <nav>
-        <ul className="navbar">
+      <nav className="navbar">
           <img className="logo" src={logo} alt="logo" />
-          <li>Hello username !</li>
-        </ul>
+          <div className="user">
+             <p>Hello username !</p>
+             <button className="logout-button" onClick={handleLogout}>Logout</button>
+          </div>
       </nav>
       <h1>Voting Page</h1>
       <div className="candidates">

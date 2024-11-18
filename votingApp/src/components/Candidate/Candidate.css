@@ -24,9 +24,9 @@
 .candidate button{
     padding: 0.5em 1em;
     margin: 0.5em;
-    border: none;
     border-radius: 0.5rem;
-    background-color: #007bff;
-    color: white;
+    border: 0.1rem solid red ;
+    color: black;
     cursor: pointer;
+    background-color: white;
 }

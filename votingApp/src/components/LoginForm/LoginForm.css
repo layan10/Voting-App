@@ -33,3 +33,17 @@
     border-radius: 0.5rem;
     border: 0.1rem solid white;
 }
+
+.login-button{
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid white;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.login-button:hover{
+    border: 0.1rem solid red;
+}

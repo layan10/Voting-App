@@ -1,10 +1,24 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './LoginForm.css';
-import { useState } from 'react';
 
-const LoginForm = ({ logo }) => {
+const LoginForm = ({logo , users}) => {  
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const handleLogin = () => {
+        const user = users.find(
+          (user) => user.email === email && user.password === password
+        );
+    
+        if (user) {
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password );
+            alert('Login successful');
+        } else {
+            alert('Invalid email or password');
+        }
+    };
 
     return (
         <form className="login-form">
@@ -24,12 +38,19 @@ const LoginForm = ({ logo }) => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
+            <button type="submit" className="login-button" onClick={handleLogin}>Login to Vote!</button>
         </form>
     );
 };
 
 LoginForm.propTypes = {
     logo: PropTypes.string.isRequired,
+    users: PropTypes.arrayOf(
+        PropTypes.shape({
+            email: PropTypes.string.isRequired,
+            password: PropTypes.string.isRequired,
+        })
+    ).isRequired,
 };
 
 export default LoginForm;
